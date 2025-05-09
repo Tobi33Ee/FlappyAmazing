@@ -4,6 +4,7 @@ public class PipeSpawnScript : MonoBehaviour
 {
     [SerializeField] private GameObject topPipe;
     [SerializeField] private GameObject bottomPipe;
+    [SerializeField] private GameObject goal;
 
     [SerializeField] private float spawnRateMin = 3f; // Minimum Zeit zwischen Spawns
     [SerializeField] private float spawnRateMax = 10f; // Maximale Zeit zwischen Spawns
@@ -38,6 +39,7 @@ public class PipeSpawnScript : MonoBehaviour
 
         Instantiate(topPipe, spawnTop, transform.rotation);
         Instantiate(bottomPipe, spawnBottom, transform.rotation);
+        Instantiate(goal, transform.position, transform.rotation);
     }
 
     void SetNextSpawnTime()

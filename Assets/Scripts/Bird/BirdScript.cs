@@ -10,6 +10,8 @@ public class BirdScript : MonoBehaviour
     private Rigidbody2D rb;
     private bool canJump = true;
     private bool jumpSwing = true;
+    private bool isAlive = true;
+    public LogicScript logic;
 
     private void Awake()
     {
@@ -18,7 +20,7 @@ public class BirdScript : MonoBehaviour
 
     private void OnJump(InputValue value)
     {
-        if (value.isPressed && canJump)
+        if (value.isPressed && canJump && isAlive)
         {
             // Upwards force for the jump
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -55,7 +57,7 @@ public class BirdScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
     }
 
     // Update is called once per frame
@@ -67,5 +69,15 @@ public class BirdScript : MonoBehaviour
     private void FixedUpdate()
     {
         // Keine kontinuierliche Bewegung mehr nötig
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 6) // Layer 6 is the pipe layer
+        {
+            logic.gameOver();
+            isAlive = false;
+            Debug.Log("Game Over!");
+        }
     }
 }
