@@ -16,6 +16,16 @@ public class LogicScript : MonoBehaviour
     void Start()
     {
         backgroundMusic.Play();
+        if (PlayerPrefs.HasKey("musicVolume"))
+        {
+            backgroundMusic.volume = PlayerPrefs.GetFloat("musicVolume");
+        }
+        if (PlayerPrefs.HasKey("effectVolume"))
+        {
+            scoreSound.volume = PlayerPrefs.GetFloat("effectVolume");
+            collisionSound.volume = PlayerPrefs.GetFloat("effectVolume");
+            oobSound.volume = PlayerPrefs.GetFloat("effectVolume");
+        }
     }
 
     public void addScore(int scoreToAdd)

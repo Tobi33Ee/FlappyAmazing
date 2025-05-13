@@ -8,6 +8,11 @@ public class TitleScreenLogic : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
+    public void loadSettingScene()
+    {
+        SceneManager.LoadScene("SettingsScreen");
+    }
+
     public void QuitGame()
     {
         Application.Quit();
