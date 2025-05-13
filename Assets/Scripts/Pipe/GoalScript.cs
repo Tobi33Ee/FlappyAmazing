@@ -3,12 +3,29 @@ using UnityEngine;
 public class GoalScript : MonoBehaviour
 {
     public LogicScript logic;
-    [SerializeField] private float speed = 7.5f; // Speed of the Goal Element
+    private float speed; // Speed of the Goal Element
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+
+        if (PlayerPrefs.HasKey("DifficultyLevel"))
+        {
+            if (PlayerPrefs.GetInt("DifficultyLevel") == 1) //Easy
+            {
+                speed = 7f;
+            }
+            else if (PlayerPrefs.GetInt("DifficultyLevel") == 2) //Medium
+            {
+                speed = 10f;
+            }
+            else if (PlayerPrefs.GetInt("DifficultyLevel") == 3) //Hard
+            {
+                speed = 12.345f;
+            }
+        }
+
     }
 
     // Update is called once per frame

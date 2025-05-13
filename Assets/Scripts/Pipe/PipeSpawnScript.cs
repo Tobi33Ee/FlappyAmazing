@@ -6,8 +6,8 @@ public class PipeSpawnScript : MonoBehaviour
     [SerializeField] private GameObject bottomPipe;
     [SerializeField] private GameObject goal;
 
-    private float spawnRateMin = 0.25f; // Minimum Zeit zwischen Spawns
-    private float spawnRateMax = 3f; // Maximale Zeit zwischen Spawns
+    private float spawnRateMin; // Minimum Zeit zwischen Spawns
+    private float spawnRateMax; // Maximale Zeit zwischen Spawns
     //private float pipeMin = 4.14f;
     //private float pipeMax = 7.77f;
     private float timer = 0f;
@@ -64,19 +64,25 @@ public class PipeSpawnScript : MonoBehaviour
     {
         if(PlayerPrefs.HasKey("DifficultyLevel"))
         {
-            if(PlayerPrefs.GetInt("DifficultyLevel") == 1)
+            if(PlayerPrefs.GetInt("DifficultyLevel") == 1) //Easy
             {
                 biggestGap = 15.42f;
                 smallestGap = 10f;
-            }else if (PlayerPrefs.GetInt("DifficultyLevel") == 2)
+                spawnRateMin = 1f;
+                spawnRateMax = 2.5f;
+            }else if (PlayerPrefs.GetInt("DifficultyLevel") == 2) //Medium
             {
                 biggestGap = 15.42f - 2.5f;
                 smallestGap = 8.5f;
+                spawnRateMin = 1f;
+                spawnRateMax = 2f;
             }
-            else if (PlayerPrefs.GetInt("DifficultyLevel") == 3)
+            else if (PlayerPrefs.GetInt("DifficultyLevel") == 3) //Hard
             {
                 biggestGap = 15.42f - 4f;
                 smallestGap = 8.38f;
+                spawnRateMin = 0.75f;
+                spawnRateMax = 1.5f;
             }
 
         }

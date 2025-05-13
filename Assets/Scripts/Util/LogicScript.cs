@@ -11,6 +11,13 @@ public class LogicScript : MonoBehaviour
     [SerializeField] private AudioSource scoreSound;
     [SerializeField] private AudioSource collisionSound;
     [SerializeField] private AudioSource oobSound;
+    [SerializeField] private AudioSource backgroundMusic;
+    
+    void Start()
+    {
+        backgroundMusic.Play();
+    }
+
     public void addScore(int scoreToAdd)
     {
         if (isAlive)
@@ -40,12 +47,18 @@ public class LogicScript : MonoBehaviour
             {
                 isAlive = false;
                 collisionSound.Play();
+                backgroundMusic.Stop();
                 gameOverScreen.SetActive(true);
             }else if(deathType == "out_of_bounds")
             {
                 isAlive = false;
                 oobSound.Play();
+                backgroundMusic.Stop();
                 gameOverScreen.SetActive(true);
+            }
+            else
+            {
+                Debug.Log("WHAT THE FUQQQQQ ==== "+deathType);
             }
         }
     }
